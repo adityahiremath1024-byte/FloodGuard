@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FloodGuard</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Nunito+Sans:wght@400;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- 3D Rotating Earth Background -->
+<canvas id="c"></canvas>
+<canvas id="fx"></canvas>
+
+<main class="wrap">
+
+  <div class="logo">
+    <svg viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M32 3 8 11v20c0 14 10 24 24 30 14-6 24-16 24-30V11z" fill="#0b1f4a" stroke="#2f8cff" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M32 15 19 26h4v8h18v-8h4z" fill="#fff"/>
+      <rect x="29" y="28" width="6" height="6" fill="#0b1f4a"/>
+      <path d="M14 40q4-3 9 0t9 0 9 0 9 0M14 47q4-3 9 0t9 0 9 0 9 0" fill="none" stroke="#2f8cff" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+    <h1>FloodGuard</h1>
+  </div>
+  <p class="tag">Know the risk, find the safe way, stay prepared.</p>
+
+  <h2>Choose your portal</h2>
+
+  <div class="cards">
+    <section class="card citizen">
+      <div class="icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="4.8" cy="10" r="2"/><circle cx="19.2" cy="10" r="2"/></svg>
+      </div>
+      <h3>Citizen Portal</h3>
+      <p>Get alerts, check flood status, find safe routes and shelters.</p>
+      <button class="btn" data-go="Citizen Portal">Login</button>
+    </section>
+
+    <section class="card eoc">
+      <div class="icon">
+        <svg viewBox="0 0 24 24"><path d="M7 17v-5a5 5 0 0 1 10 0v5"/><path d="M5 20h14v-3H5z"/><path d="M12 3v2M4.5 6l1.5 1.5M19.5 6 18 7.5M2.5 12H4M20 12h1.5"/></svg>
+      </div>
+      <h3>Emergency Operation Center</h3>
+      <p>Monitor, coordinate and manage emergency response.</p>
+      <button class="btn" data-go="Emergency Operation Center">Login</button>
+    </section>
+  </div>
+
+</main>
+
+<div id="msg" role="status"></div>
+
+<!-- Background and Portal Scripts -->
+<script src="earth.js"></script>
+<script src="stars.js"></script>
+<script src="portal.js"></script>
+</body>
+</html>
