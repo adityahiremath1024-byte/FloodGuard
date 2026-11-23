@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Citizen Registration – FloodGuard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Leaflet CSS for Map Location Picker -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="register.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="shield" viewBox="0 0 44 52">
+    <path d="M22 2 4 9v17c0 11 8 20 18 24 10-4 18-13 18-24V9z" fill="#0b4d2a"/>
+    <path d="M22 11 12 19h3v8h14v-8h3z" fill="#fff"/>
+    <rect x="19.5" y="21" width="5" height="6" fill="#0b4d2a"/>
+    <path d="M10 33q3-3 6 0t6 0 6 0 6 0M10 39q3-3 6 0t6 0 6 0 6 0" fill="none" stroke="#7fd1a1" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<header>
+  <a class="logo" href="index.html" aria-label="FloodGuard home"><svg><use href="#shield"/></svg>FloodGuard</a>
+  <nav aria-label="Site">
+    <a href="citizen-login.html"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Back to Login</a>
+    <a class="help" href="help.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7M12 17h.01"/></svg>Help</a>
+    <span class="lang"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>
+      <select id="lang" aria-label="Language">
+        <option value="en">English</option><option value="kn">ಕನ್ನಡ</option><option value="hi">हिन्दी</option><option value="mr">मराठी</option>
+      </select>
+    </span>
+  </nav>
+</header>
+
+<main>
+  <div class="reg-container">
+    <div class="reg-header">
+      <svg class="logo-sm" aria-hidden="true"><use href="#shield"/></svg>
+      <h1>Citizen Registration</h1>
+      <p class="tagline">Create your permanent geographical profile for real-time flood monitoring and emergency assistance.</p>
+    </div>
+
+    <div class="banner" id="banner" role="alert"></div>
+
+    <form id="reg-form" novalidate>
+      <div class="form-grid">
+        <!-- Section 1: Basic Information -->
+        <fieldset class="form-section">
+          <legend>
+            <span class="sec-num">1</span>
+            Personal & Contact Information
+          </legend>
+
+          <div class="field">
+            <label for="name">Full Name <span class="req">*</span></label>
+            <div class="input">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <input type="text" id="name" name="name" placeholder="Enter your full name" required autocomplete="name">
+            </div>
+            <p class="err" id="name-err"></p>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="mobile">Mobile Number <span class="req">*</span></label>
+              <div class="input">
+                <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                <input type="text" id="mobile" name="mobile" placeholder="10-digit mobile number" inputmode="tel" required autocomplete="tel">
+              </div>
+              <p class="err" id="mobile-err"></p>
+            </div>
+
+            <div class="field">
+              <label for="email">Email Address <span class="req">*</span></label>
+              <div class="input">
+                <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                <input type="text" id="email" name="email" placeholder="you@example.com" inputmode="email" required autocomplete="email">
+              </div>
+              <p class="err" id="email-err"></p>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="district">District <span class="req">*</span></label>
+              <div class="input">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <input type="text" id="district" name="district" placeholder="Enter your district (e.g. Belagavi)" required>
+              </div>
+              <p class="err" id="district-err"></p>
+            </div>
+
+            <div class="field">
+              <label for="language">Preferred Language</label>
+              <div class="input select-input">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>
+                <select id="language" name="language">
+                  <option value="English">English</option>
+                  <option value="Kannada">ಕನ್ನಡ (Kannada)</option>
+                  <option value="Hindi">हिन्दी (Hindi)</option>
+                  <option value="Marathi">मराठी (Marathi)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="emergency-contact">Emergency Contact Number <span class="opt">(Optional)</span></label>
+            <div class="input">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <input type="text" id="emergency-contact" name="emergencyContact" placeholder="Emergency contact phone number" inputmode="tel">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="password">Create Password <span class="req">*</span></label>
+              <div class="input">
+                <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+                <input type="password" id="password" name="password" placeholder="At least 6 characters" required autocomplete="new-password">
+              </div>
+              <p class="err" id="password-err"></p>
+            </div>
+
+            <div class="field">
+              <label for="confirm-password">Confirm Password <span class="req">*</span></label>
+              <div class="input">
+                <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+                <input type="password" id="confirm-password" name="confirmPassword" placeholder="Re-enter password" required autocomplete="new-password">
+              </div>
+              <p class="err" id="confirm-password-err"></p>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Section 2: Permanent Geographical Profile (From FloodGuard Plan Stage 1) -->
+        <fieldset class="form-section">
+          <legend>
+            <span class="sec-num">2</span>
+            Permanent Geographical Profile
+          </legend>
+          <p class="section-desc">Click on the map or use the GPS button to set your permanent location. Rescue teams use this to identify exposed citizens during flood events.</p>
+
+          <div class="map-toolbar">
+            <button type="button" class="btn-tool" id="btn-gps">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+              Use My Current GPS Location
+            </button>
+            <span class="map-hint">Or click anywhere on the map to pin your home</span>
+          </div>
+
+          <!-- Interactive Leaflet Map Container -->
+          <div id="map" class="location-map" aria-label="Interactive map to select permanent location"></div>
+
+          <div class="field-row" style="margin-top: 1rem;">
+            <div class="field">
+              <label for="latitude">Latitude <span class="req">*</span></label>
+              <div class="input">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
+                <input type="text" id="latitude" name="latitude" placeholder="e.g. 15.8497" required readonly>
+              </div>
+              <p class="err" id="latitude-err"></p>
+            </div>
+
+            <div class="field">
+              <label for="longitude">Longitude <span class="req">*</span></label>
+              <div class="input">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
+                <input type="text" id="longitude" name="longitude" placeholder="e.g. 74.4977" required readonly>
+              </div>
+              <p class="err" id="longitude-err"></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="location-type">Location Type</label>
+            <div class="input select-input">
+              <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              <select id="location-type" name="locationType">
+                <option value="Home" selected>Home Residence</option>
+                <option value="Workplace">Workplace / Business</option>
+                <option value="Regular">Regular Location</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="consent-box">
+            <label class="consent-label">
+              <input type="checkbox" id="consent" name="consent" required>
+              <span>I consent to saving my permanent coordinates in the FloodGuard database for flood monitoring and rescue identification.</span>
+            </label>
+            <p class="err" id="consent-err"></p>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="reg-submit-wrap">
+        <button class="btn btn-submit" type="submit" id="btn-submit">
+          <span class="spin" aria-hidden="true"></span>
+          <span id="submit-text">Register as Citizen</span>
+        </button>
+        <p class="privacy">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+          Individual location and contact data are restricted to authorized rescue operations only.
+        </p>
+      </div>
+    </form>
+
+    <div class="divider">Already registered on FloodGuard? <a href="citizen-login.html">Login here</a></div>
+  </div>
+</main>
+
+<footer>FloodGuard · Community Flood Preparedness and Safety Intelligence Platform &nbsp;|&nbsp; <b>In danger right now? Call 112.</b></footer>
+
+<!-- Leaflet JS and Registration Script -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="register.js"></script>
+</body>
+</html>

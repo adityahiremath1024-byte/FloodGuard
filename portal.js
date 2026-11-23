@@ -5,8 +5,15 @@
   var msg = document.getElementById('msg'), t;
   document.querySelectorAll('.btn').forEach(function(b){
     b.addEventListener('click', function(){
-      // replace this with your real login page, e.g. location.href = 'citizen-login.html';
-      msg.textContent = 'Opening ' + b.dataset.go + ' login...';
+      var portal = b.dataset.go;
+
+      if (portal === 'Citizen Portal') {
+        window.location.href = 'citizen-login.html';
+        return;
+      }
+
+      // For other portals, show a temporary message (replace with real links later)
+      msg.textContent = 'Opening ' + portal + ' login...';
       msg.classList.add('show');
       clearTimeout(t);
       t = setTimeout(function(){ msg.classList.remove('show'); }, 2200);
