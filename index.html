@@ -2,58 +2,55 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FloodGuard</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Nunito+Sans:wght@400;600&display=swap">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FloodGuard – Choose Portal</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<!-- 3D Rotating Earth Background -->
 <canvas id="c"></canvas>
 <canvas id="fx"></canvas>
-
-<main class="wrap">
-
-  <div class="logo">
-    <svg viewBox="0 0 64 64" aria-hidden="true">
-      <path d="M32 3 8 11v20c0 14 10 24 24 30 14-6 24-16 24-30V11z" fill="#0b1f4a" stroke="#2f8cff" stroke-width="3" stroke-linejoin="round"/>
-      <path d="M32 15 19 26h4v8h18v-8h4z" fill="#fff"/>
-      <rect x="29" y="28" width="6" height="6" fill="#0b1f4a"/>
-      <path d="M14 40q4-3 9 0t9 0 9 0 9 0M14 47q4-3 9 0t9 0 9 0 9 0" fill="none" stroke="#2f8cff" stroke-width="3" stroke-linecap="round"/>
+<main class="ui">
+  <div class="brand">
+    <svg viewBox="0 0 48 52" aria-hidden="true">
+      <path d="M24 2 44 9v16c0 12-8 21-20 25C12 46 4 37 4 25V9z" fill="#1f4a36"/>
+      <path d="M24 13 14 21v8h20v-8z" fill="#fff"/>
+      <path d="M21 29v-6h6v6z" fill="#1f4a36"/>
+      <path d="M10 36q3.5-3 7 0t7 0 7 0 7 0" fill="none" stroke="#8fd1a8" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M13 41q3-2.5 6 0t6 0 6 0 4 0" fill="none" stroke="#8fd1a8" stroke-width="2" stroke-linecap="round" opacity=".7"/>
     </svg>
     <h1>FloodGuard</h1>
   </div>
-  <p class="tag">Know the risk, find the safe way, stay prepared.</p>
-
-  <h2>Choose your portal</h2>
-
+  <p class="tag">Know the risk, find the safe way, stay prepared</p>
+  <h2 class="choose">Choose your portal</h2>
   <div class="cards">
-    <section class="card citizen">
-      <div class="icon">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="4.8" cy="10" r="2"/><circle cx="19.2" cy="10" r="2"/></svg>
+    <section class="card">
+      <div class="ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1f4a45" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M3 11 12 3l9 8"/>
+          <path d="M5 10v10h8"/>
+          <path d="M18 14l4 7h-8z" fill="#1f4a45"/>
+          <path d="M18 17v2" stroke="#fff"/>
+        </svg>
       </div>
-      <h3>Citizen Portal</h3>
-      <p>Get alerts, check flood status, find safe routes and shelters.</p>
-      <button class="btn" data-go="Citizen Portal">Login</button>
+      <h2>Citizen Portal</h2>
+      <p>Get alerts, check flood status, find safe routes and shelters</p>
+      <a class="btn" href="citizen-login.html">Login</a>
     </section>
-
     <section class="card eoc">
-      <div class="icon">
-        <svg viewBox="0 0 24 24"><path d="M7 17v-5a5 5 0 0 1 10 0v5"/><path d="M5 20h14v-3H5z"/><path d="M12 3v2M4.5 6l1.5 1.5M19.5 6 18 7.5M2.5 12H4M20 12h1.5"/></svg>
+      <div class="ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8a5f00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 17a6 6 0 0 1 12 0z" fill="#d9a94c"/>
+          <path d="M4 21h16"/>
+          <path d="M12 4v2M5 7l1.5 1.5M19 7l-1.5 1.5"/>
+        </svg>
       </div>
-      <h3>Emergency Operation Center</h3>
-      <p>Monitor, coordinate and manage emergency response.</p>
-      <button class="btn" data-go="Emergency Operation Center">Login</button>
+      <h2>Emergency Operation Center</h2>
+      <p>Monitor, coordinate and manage emergency response</p>
+      <a class="btn" href="eoc-login.html">Login</a>
     </section>
   </div>
-
 </main>
 
-<div id="msg" role="status"></div>
-
-<!-- Background and Portal Scripts -->
 <script src="earth.js"></script>
-<script src="stars.js"></script>
-<script src="portal.js"></script>
 </body>
 </html>
